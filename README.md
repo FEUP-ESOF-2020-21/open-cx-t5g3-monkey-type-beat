@@ -72,8 +72,6 @@ Briefly describe each use case mentioning the following:
 
 ### User stories
 
-The users should be able to chat to eachother if they matched and participated in the same conference.
-
 This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
 
 For each theme, or role, you may add a small description. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
