@@ -74,3 +74,4 @@ assets/env/*
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 .env
+communio/.flutter-plugins-dependencies
