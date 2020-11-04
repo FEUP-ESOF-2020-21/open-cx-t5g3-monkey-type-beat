@@ -1,6 +1,8 @@
-# openCX-*your module name* Development Report
+# openCX-*Monkey Type Beat* Development Report
 
-Welcome to the documentation pages of the *your (sub)product name* of **openCX**!
+This project is based on the product of [open-cx-heapsdontlie](https://github.com/softeng-feup/open-cx-heapsdontlie).
+
+Welcome to the documentation pages of the *Commun.io* of **openCX**!
 
 You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
 
@@ -37,23 +39,36 @@ Developers:
 
 ## Product Vision
 
-An application where conference participants can make new connections with other participants based on their interests, while getting access to rewards for doing so.
+Our App aims to:
+
+provide one to one social media exchange
+allow the broadcast of social media information
+permit the filtering of incoming data based on defined preferences
+It is directed towards:
+
+conference attendees seeking to expand their network
+recruiters looking for specialized people
+communities intending to broaden their audience
+The atendees will benefit from maximizing their networking opportunities, as they will be equipped with the means to easily exchange their social media information.
+
+Conferences, on the other hand, will profit from their now enhanced ability to form a densely connected community out of their audience, at a very small cost to themselves.
 
 ---
 ## Elevator Pitch
-Draft a small text to help you quickly introduce and describe your product in a short time and a few words (~800 characters), a technique usually known as elevator pitch.
-
-Take a look at the following links to learn some techniques:
-* [Crafting an Elevator Pitch](https://www.mindtools.com/pages/article/elevator-pitch.htm)
-* [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
-* [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
+Ever felt like you lose contact with every awesome person you meet during a conference? Ever felt like it is impossible for you to find the people whose interests are shared with you? Commun.io has a solution for you! Have the ability to find those close to you whom you can share your thoughts. Commun.io - networking from the comfort of your pocket
 
 ---
 ## Requirements
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
+Want to contribute to this project? Here are some requirements you will need!
+ - Flutter
+ - Dart
+ - OpenCX Server - you can use ours at https://open-cx-communio.herokuapp.com/
 
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+Add a .env file at the root of the communio with the following information
+```
+API_URL=https://open-cx-communio.herokuapp.com/
+```
 
 ### Use case diagram
 
