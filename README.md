@@ -41,19 +41,20 @@ Developers:
 
 Our App aims to:
 
-Provide one to one social media exchange
+- Provide one to one social media exchange
 
-Allow the broadcast of social media information
+- Allow the broadcast of social media information
 
-Permit the filtering of incoming data based on defined preferences
+- Permit the filtering of incoming data based on defined preferences
+
 
 It is directed towards:
 
-Conference attendees seeking to expand their network
+- Conference attendees seeking to expand their network
 
-Recruiters looking for specialized people
+- Recruiters looking for specialized people
 
-Communities intending to broaden their audience
+- Communities intending to broaden their audience
 
 The atendees will benefit from maximizing their networking opportunities, as they will be equipped with the means to easily exchange their social media information.
 
