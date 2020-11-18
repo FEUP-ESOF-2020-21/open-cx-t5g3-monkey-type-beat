@@ -90,17 +90,15 @@ class _ProfileInterestsState extends State<ProfileInterests> {
     interests.asMap().forEach((index, interest) {
       interestsCards.add(Container(
         key: Key('$type-$index'),
-        child:
-          FilterCard(
-            filter: interest,
-            removeFilter: () async {
-              if(removing != null)
-                removing(interest, type);
-              setState(() {
-                interests.remove(interest);
-              });
-            },
-          ),
+        child: FilterCard(
+          filter: interest,
+          removeFilter: () async {
+            if (removing != null) removing(interest, type);
+            setState(() {
+              interests.remove(interest);
+            });
+          },
+        ),
       ));
     });
     return interestsCards;
@@ -108,8 +106,7 @@ class _ProfileInterestsState extends State<ProfileInterests> {
 
   addInterest(String interest) async {
     final trimmed = interest.trim();
-    if(adding != null)
-      adding(trimmed, type);
+    if (adding != null) adding(trimmed, type);
     setState(() {
       interests.add(trimmed);
     });

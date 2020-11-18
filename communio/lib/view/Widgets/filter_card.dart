@@ -4,10 +4,7 @@ class FilterCard extends StatefulWidget {
   final String filter;
   final Function removeFilter;
 
-  FilterCard({
-    Key key,
-    @required this.filter,
-    @required this.removeFilter});
+  FilterCard({Key key, @required this.filter, @required this.removeFilter});
 
   @override
   _FilterCardState createState() => _FilterCardState(filter, removeFilter);
@@ -16,18 +13,14 @@ class FilterCard extends StatefulWidget {
 class _FilterCardState extends State<FilterCard> {
   final Function removeFilter;
   final String filter;
-  final verticalPadding = 12.0;
-  final horizontalPadding = 12.0;
+  final horizontalPadding = 5.0;
   final horizontalMargin = 5.0;
 
   _FilterCardState(this.filter, this.removeFilter);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: () {
-        this.removeFilter();
-      },
+    return Container(
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondaryVariant,
@@ -36,15 +29,25 @@ class _FilterCardState extends State<FilterCard> {
         margin:
             EdgeInsets.only(right: horizontalMargin, left: horizontalMargin),
         child: Container(
-            padding: EdgeInsets.only(
-                top: verticalPadding,
-                bottom: verticalPadding,
-                left: horizontalPadding,
-                right: horizontalPadding),
-            child: Text(
+          padding: EdgeInsets.only(
+              left: horizontalPadding, right: horizontalPadding),
+          child: Row(children: <Widget>[
+            Text(
               filter,
-              style: Theme.of(context).textTheme.body2.apply(fontSizeDelta: -5),
-            )),
+              style: Theme.of(context).textTheme.body2.apply(fontSizeDelta: 0),
+            ),
+            IconButton(
+              onPressed: () {
+                this.removeFilter();
+              },
+              icon: Icon(
+                Icons.cancel,
+                size: 24.0,
+                semanticLabel: filter,
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }
