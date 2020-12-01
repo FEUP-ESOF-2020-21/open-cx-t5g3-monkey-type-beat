@@ -1,11 +1,20 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:communio/redux/action_creators.dart';
+
+import 'package:communio/model/app_state.dart';
+import 'package:communio/model/known_person.dart';
 import 'package:communio/view/Widgets/image_upload.dart';
 import 'package:communio/view/Widgets/insert_email_field.dart';
 import 'package:communio/view/Widgets/insert_name_field.dart';
 import 'package:communio/view/Widgets/insert_password_field.dart';
 import 'package:communio/view/Widgets/profile_interests.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:logger/logger.dart';
 import 'package:toast/toast.dart';
+import 'package:http/http.dart' as http;
 
 class CreateProfileForm extends StatefulWidget {
   @override
@@ -39,24 +48,6 @@ class CreateProfileFormState extends State<CreateProfileForm> {
               InsertNameField(nameController),
               InsertEmailField(emailController),
               InsertPasswordField(passwordController),
-              ProfileInterests(
-                type: 'tags',
-                interests: interests,
-                edit: true,
-                name: 'Interests',
-              ),
-              ProfileInterests(
-                type: 'programming_languages',
-                interests: programmingLanguages,
-                edit: true,
-                name: 'Programming Languages',
-              ),
-              ProfileInterests(
-                type: 'skills',
-                interests: skills,
-                edit: true,
-                name: 'Skills',
-              ),
               buildTOSCheckbox(),
               buildSubmitButton(),
             ]));
@@ -90,14 +81,27 @@ class CreateProfileFormState extends State<CreateProfileForm> {
       Toast.show('Processing Data', context);
       final name = nameController.text.trim();
       final email = emailController.text.trim();
-      final testPassword = passwordController.text.trim();
-      Logger().i("""
-Name: $name,
-Email: $email,
-Test Password: $testPassword,
-Interests: $interests,
-Programming Languages: $programmingLanguages
-Skills: $skills""");
+      final password = passwordController.text.trim();
+      print("""
+      Name: $name,
+      Email: $email,
+      Test Password: $password,
+      Interests: $interests,
+      Programming Languages: $programmingLanguages
+      Skills: $skills""");
+      var req = json.encode({
+        "email": email,
+        "fullname": name,
+        "password": password,
+      });
+
+      var response = this.addPerson(context, req);
+      if (response != 200) {
+        Toast.show('Invalid values!', context, duration: 5);
+        // return;
+      }
+
+      StoreProvider.of<AppState>(context).dispatch(updateUser(email));
     }
   }
 
@@ -126,6 +130,20 @@ Skills: $skills""");
                         .apply(fontSizeDelta: -5),
                   ),
                 ))));
+  }
+
+  addPerson(BuildContext context, reg) async {
+    final store = StoreProvider.of<AppState>(context);
+    Map<String, String> headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    var response = await http.post(store.state.content['profile'] + '/register',
+        body: reg, headers: headers);
+    print(utf8.decode(response.bodyBytes));
+    print(response.statusCode);
+    return response.statusCode;
   }
 
   bool _agreedWithTerms() {
