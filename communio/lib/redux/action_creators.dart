@@ -36,7 +36,7 @@ ThunkAction<AppState> scanForDevices() {
     //   final isAvailable = await bluetooth.isAvailable;
     //   if (isAvailable) {
     //     bluetooth
-  //         .scan(scanMode: ScanMode.balanced, timeout: Duration(minutes: 30))
+    //         .scan(scanMode: ScanMode.balanced, timeout: Duration(minutes: 30))
     //         .listen((scanResult) async {
     //       final Map<String, PersonFound> bluetoothDevices =
     //           store.state.content['bluetooth_devices'];
@@ -108,7 +108,7 @@ ThunkAction<AppState> connectToPerson(String person) {
   };
 }
 
-ThunkAction<AppState> selectNewDevice(String device){
+ThunkAction<AppState> selectNewDevice(String device) {
   //TO-DO Add request to server
   return (Store<AppState> store) {
     store.dispatch(SelectActiveDevice(device));
@@ -121,5 +121,20 @@ ThunkAction<AppState> selectOwnDevice() {
     final platform = MethodChannel('pt.up.fe.communio');
     final String device = await platform.invokeMethod('getLocalBluetoothName');
     store.dispatch(SelectActiveDevice(device));
+  };
+}
+
+ThunkAction<AppState> updateUser(String email) {
+  return (Store<AppState> store) async {
+    final response = await http.get('${store.state.content['profile']}');
+    var map = json.decode(utf8.decode(response.bodyBytes));
+    var id;
+    for (var item in map) {
+      if (item['email'] == email) {
+        id = item['_id'];
+        break;
+      }
+    }
+    store.dispatch(UpdateUser(id));
   };
 }
