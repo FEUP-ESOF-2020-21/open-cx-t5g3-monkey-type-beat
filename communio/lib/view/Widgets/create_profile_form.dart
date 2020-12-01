@@ -98,7 +98,7 @@ class CreateProfileFormState extends State<CreateProfileForm> {
       var response = this.addPerson(context, req);
       if (response != 200) {
         Toast.show('Invalid values!', context, duration: 5);
-        // return;
+        return;
       }
 
       StoreProvider.of<AppState>(context).dispatch(updateUser(email));

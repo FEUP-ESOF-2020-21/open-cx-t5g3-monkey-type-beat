@@ -37,23 +37,25 @@ class KnownPerson {
   }
 
   factory KnownPerson.fromJson(Map<String, dynamic> json) {
+    var socials = null;
+    if (json['socials'] != null)
+      socials = KnownPerson._createSocial(json['socials']);
     return new KnownPerson(
         uuid: json['_id'],
         name: json['fullname'],
         photo: json['photo'],
         location: json['location'],
-        socials: KnownPerson._createSocial(json['socials']),
+        socials: socials,
         interests: json['tags'],
         description: json['description'],
         programmingLanguages: json['programming_languages'],
-        skills: json['skills'] 
-    );
+        skills: json['skills']);
   }
 
   static List<SocialBlock> _createSocial(Map<String, dynamic> response) {
     final List<SocialBlock> socials = new List<SocialBlock>();
     response.forEach((k, v) {
-      if(v != null) socials.add(new SocialBlock(k, v));
+      if (v != null) socials.add(new SocialBlock(k, v));
     });
     return socials;
   }
