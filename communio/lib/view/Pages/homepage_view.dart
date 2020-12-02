@@ -31,7 +31,6 @@ class HomePageView extends StatelessWidget {
     getPerson(context).then((value) => person = value);
     final store = StoreProvider.of<AppState>(context);
     store.dispatch(queryFriendsList(store.state.content['user_id']));
-    print('to aquiiiii');
     return StoreConnector<AppState, Set<KnownPerson>>(
       converter: (store) => store.state.content['friends'],
       builder: (context, friends) {

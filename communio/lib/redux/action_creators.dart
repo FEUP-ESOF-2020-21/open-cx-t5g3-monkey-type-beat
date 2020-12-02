@@ -124,17 +124,3 @@ ThunkAction<AppState> selectOwnDevice() {
   };
 }
 
-ThunkAction<AppState> updateUser(String email) {
-  return (Store<AppState> store) async {
-    final response = await http.get('${store.state.content['profile']}');
-    var map = json.decode(utf8.decode(response.bodyBytes));
-    var id;
-    for (var item in map) {
-      if (item['email'] == email) {
-        id = item['_id'];
-        break;
-      }
-    }
-    store.dispatch(UpdateUser(id));
-  };
-}
