@@ -1,15 +1,15 @@
 import 'package:communio/model/social_block.dart';
 
 class KnownPerson {
-  final String uuid;
-  final String name;
-  final String photo;
-  final String location;
-  final String description;
-  List<SocialBlock> socials;
-  List<dynamic> interests;
-  List<dynamic> programmingLanguages;
-  List<dynamic> skills;
+  String uuid="";
+  String name="";
+  String photo="";
+  String location="";
+  String description="";
+  List<SocialBlock> socials=[];
+  List<dynamic> interests=[];
+  List<dynamic> programmingLanguages=[];
+  List<dynamic> skills=[];
 
   KnownPerson(
       {this.uuid,

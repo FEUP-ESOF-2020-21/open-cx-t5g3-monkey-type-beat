@@ -18,9 +18,9 @@ import 'general_page_view.dart';
 
 class ProfilePage extends StatelessWidget {
   final String profileId;
-  final KnownPerson knownPerson;
+  KnownPerson knownPerson;
   final bool edit;
-  static Future<KnownPerson> person;
+  static Future<KnownPerson> person = null;
 
   ProfilePage({this.profileId, this.knownPerson, @required this.edit}) {
     if (person == null) person = getPerson(profileId);
@@ -28,13 +28,21 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     if (knownPerson != null) {
       return buildProfilePage(context, knownPerson);
     }
-    return new FuturePageBuilder<KnownPerson>(
-      data: person,
-      func: this.buildProfilePage,);
+    return FutureBuilder<List<KnownPerson>>(
+      future: Future.wait([getPerson(profileId)]),
+    builder: (context, snapshot) {
+        if(!snapshot.hasData){
+          return CircularProgressIndicator();
+        }
+        print('DATA: '+snapshot.data.toString());
+        return buildProfilePage(context, knownPerson);
+    });
   }
+
 
   buildProfilePage(BuildContext context, KnownPerson person){
     if(edit){
@@ -113,7 +121,8 @@ class ProfilePage extends StatelessWidget {
   Widget buildName(KnownPerson person, BuildContext context, Size query) {
     return padWidget(
         child: Center(
-          child: Text(
+          child: (person.name == null) ? new Text("") :
+          Text(
             person.name,
             style: Theme.of(context).textTheme.body2.apply(fontSizeDelta: 10),
           ),
@@ -131,7 +140,8 @@ class ProfilePage extends StatelessWidget {
               left: query.height * 0.1, right: query.height * 0.1),
           height: query.height * _picRatio,
           child: PhotoAvatar(
-            photo: person.photo,
+            photo: (person.photo == null)? "/":
+            person.photo,
           ),
         ),
         query: query);
@@ -147,6 +157,7 @@ class ProfilePage extends StatelessWidget {
                 Icons.location_on,
                 color: cyanColor,
               ),
+              (person.location == null)? new Text(""):
               Text(
                 person.location,
                 style: Theme.of(context).textTheme.body2,
@@ -163,7 +174,8 @@ class ProfilePage extends StatelessWidget {
         Icons.info,
         Container(
           width: query.width * 0.75,
-          child: Text(
+          child: (person.description == null)? new Text(""):
+          Text(
             person.description,
             style: Theme.of(context).textTheme.body2,
           ),
@@ -172,6 +184,7 @@ class ProfilePage extends StatelessWidget {
   }
 
   buildSocialMedia(KnownPerson person, BuildContext context, Size query) {
+    if(knownPerson.socials == null) return Container();
     return buildRowWithItem(context, Icons.person,
         SocialMediaColumn(person: person, edit: edit), query);
   }
@@ -208,6 +221,7 @@ class ProfilePage extends StatelessWidget {
     final response =
     await http.get('${DotEnv().env['API_URL']}users/profile/$profileId');
     final map = json.decode(utf8.decode(response.bodyBytes));
+    this.knownPerson = KnownPerson.fromJson(map);
     return KnownPerson.fromJson(map);
   }
 }
