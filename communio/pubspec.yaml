@@ -12,9 +12,6 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.2.0 <3.0.0"
 
-dependency_overrides:
-  flutter_driver:
-
 dependencies:
   flutter:
     sdk: flutter
@@ -37,7 +34,7 @@ dependencies:
   flutter_barcode_scanner: ^0.1.7
   qr_flutter: ^3.1.0
   socket_io_client: ^0.9.7+1
-  flutter_local_notifications: ^0.8.4+3
+  flutter_local_notifications: ^3.0.1+6
   image_picker:
 
   # The following adds the Cupertino Icons font to your application.
@@ -54,7 +51,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.7.3"
   image_test_utils: ^1.0.0
   mockito: 3.0.0
-  flutter_gherkin: ^1.1.4
+  flutter_gherkin: ^1.1.9
   glob: ^1.2.0
 
 flutter_icons:
