@@ -104,13 +104,6 @@ class CreateProfileFormState extends State<CreateProfileForm> {
 
       });
       final testPassword = passwordController.text.trim();
-      Logger().i("""
-      Name: $name,
-      Email: $email,
-      Test Password: $testPassword,
-      Interests: $interests,
-      Programming Languages: $programmingLanguages
-      Skills: $skills""");
     }
   }
 
