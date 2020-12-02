@@ -17,7 +17,7 @@ void setupNotifications(String profileId) {
       new AndroidInitializationSettings('icon');
   final initializationSettingsIOS = IOSInitializationSettings();
   final initializationSettings = InitializationSettings(
-      initializationSettingsAndroid, initializationSettingsIOS);
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
   flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (String payload) async {
@@ -51,10 +51,10 @@ void addFriendsEventListener(String profileId,
     Logger().i('Sucessfully connected to Socket');
     final androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'your channel id', 'your channel name', 'your channel description',
-        importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
+        importance: Importance.max, priority: Priority.high, ticker: 'ticker');
     final iOSPlatformChannelSpecifics = IOSNotificationDetails();
     final platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
     socket.on('friend_request', (data) async {
       await flutterLocalNotificationsPlugin.show(0, 'New Friend Request!',
           '$data wants to be your friend!', platformChannelSpecifics,
