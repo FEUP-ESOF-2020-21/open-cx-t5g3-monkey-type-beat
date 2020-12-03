@@ -42,10 +42,10 @@ class _FilterCardState extends State<FilterCard> {
               IconButton(
                 onPressed: () {
                   this.removeFilter();
-                  if(filterType == 'filter')
-                    Navigator.of(context).pushNamed('/PeopleSearch');
-                  else
-                    Navigator.of(context).pushNamed('/Profile');
+                  //if(filterType == 'filter')
+                    //Navigator.of(context).pushNamed('/PeopleSearch');
+                  //else
+                    //Navigator.of(context).pushNamed('/Profile');
                 },
                 icon: Icon(
                   Icons.cancel,

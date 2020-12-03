@@ -24,6 +24,7 @@ class Filters extends StatelessWidget {
             )
           ),
           child: Row(
+            key: Key(this.generateFilters(context, filters).length.toString()),
             children: this.generateFilters(context, filters),
           ),
         );

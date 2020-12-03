@@ -59,6 +59,7 @@ class _ProfileInterestsState extends State<ProfileInterests> {
         child: SizedBox(
           height: Theme.of(context).textTheme.body2.fontSize + 22,
           child: ListView(
+            key: Key(buildCurrentInterests(context).length.toString()),
             scrollDirection: Axis.horizontal,
             children: buildCurrentInterests(context),
           ),
@@ -89,7 +90,7 @@ class _ProfileInterestsState extends State<ProfileInterests> {
   }
 
   buildCurrentInterests(BuildContext context) {
-    final List<Widget> interestsCards = List();
+    List<Widget> interestsCards = List();
     interests.asMap().forEach((index, interest) {
       interestsCards.add(Container(
         key: Key('$type-$index'),
