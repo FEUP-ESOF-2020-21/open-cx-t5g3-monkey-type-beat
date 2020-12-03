@@ -65,6 +65,7 @@ class _FriendCardState extends State<FriendCard> {
                   MaterialPageRoute(
                       builder: (context) => ProfilePage(
                             knownPerson: friend,
+                            isUser: false,
                             edit: false,
                           )));
             },

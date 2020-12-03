@@ -109,6 +109,7 @@ class MyAppState extends State<MyApp> {
                     builder: (context) => ProfilePage(
                           profileId: profile,
                           edit: true,
+                          isUser: true,
                         ),
                     settings: settings,
                     maintainState: false);

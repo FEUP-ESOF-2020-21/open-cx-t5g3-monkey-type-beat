@@ -24,6 +24,7 @@ class Filters extends StatelessWidget {
             )
           ),
           child: Row(
+            key: Key(this.generateFilters(context, filters).length.toString()),
             children: this.generateFilters(context, filters),
           ),
         );
@@ -40,6 +41,7 @@ class Filters extends StatelessWidget {
         removeFilter: (){
           StoreProvider.of<AppState>(context).dispatch(removeFilter(filter));
         },
+        filterType: 'filter',
       )
     ));
     return currentFilters;
