@@ -40,6 +40,7 @@ class Filters extends StatelessWidget {
         removeFilter: (){
           StoreProvider.of<AppState>(context).dispatch(removeFilter(filter));
         },
+        filterType: 'filter',
       )
     ));
     return currentFilters;

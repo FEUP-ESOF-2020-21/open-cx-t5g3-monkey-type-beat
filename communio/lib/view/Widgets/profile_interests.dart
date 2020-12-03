@@ -98,6 +98,7 @@ class _ProfileInterestsState extends State<ProfileInterests> {
               interests.remove(interest);
             });
           },
+          filterType: 'interest',
         ),
       ));
     });
