@@ -73,11 +73,20 @@ class CreateProfileFormState extends State<CreateProfileForm> {
       return;
     }
 
+
     if (_formKey.currentState.validate() && _agreedWithTerms()) {
       Toast.show('Processing Data', context, duration: 3);
       final name = nameController.text.trim();
       final email = emailController.text.trim();
       final password = passwordController.text.trim();
+      if(name.length < 6){
+        Toast.show('Name must have at least 6 characters!', context, duration: 5);
+        return;
+      } else
+      if(password.length < 8){
+        Toast.show('Password must have at least 8 characters!', context, duration: 5);
+        return;
+      }
       print("""
       Name: $name,
       Email: $email,
@@ -94,7 +103,7 @@ class CreateProfileFormState extends State<CreateProfileForm> {
       this.addPerson(context, req).then((response) {
         if (response['status'] != 200) {
           Toast.show(response['msg'], context, duration: 10);
-          //return;
+          return;
         }
 
         getUser(context, email).then((value) {
