@@ -36,7 +36,7 @@ ThunkAction<AppState> scanForDevices() {
     //   final isAvailable = await bluetooth.isAvailable;
     //   if (isAvailable) {
     //     bluetooth
-  //         .scan(scanMode: ScanMode.balanced, timeout: Duration(minutes: 30))
+    //         .scan(scanMode: ScanMode.balanced, timeout: Duration(minutes: 30))
     //         .listen((scanResult) async {
     //       final Map<String, PersonFound> bluetoothDevices =
     //           store.state.content['bluetooth_devices'];
@@ -108,7 +108,7 @@ ThunkAction<AppState> connectToPerson(String person) {
   };
 }
 
-ThunkAction<AppState> selectNewDevice(String device){
+ThunkAction<AppState> selectNewDevice(String device) {
   //TO-DO Add request to server
   return (Store<AppState> store) {
     store.dispatch(SelectActiveDevice(device));
@@ -123,3 +123,4 @@ ThunkAction<AppState> selectOwnDevice() {
     store.dispatch(SelectActiveDevice(device));
   };
 }
+
