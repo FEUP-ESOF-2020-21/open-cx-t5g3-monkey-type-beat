@@ -31,7 +31,6 @@ class HomePageView extends StatelessWidget {
     getPerson(context).then((value) => person = value);
     final store = StoreProvider.of<AppState>(context);
     store.dispatch(queryFriendsList(store.state.content['user_id']));
-
     return StoreConnector<AppState, Set<KnownPerson>>(
       converter: (store) => store.state.content['friends'],
       builder: (context, friends) {
@@ -39,38 +38,49 @@ class HomePageView extends StatelessWidget {
           child: ListView(
             shrinkWrap: false,
             padding: EdgeInsets.all(20.0),
-            children: (person == null) ?
-                <Widget>[
-                  new Text('\n\n\n\nLoading...', style: new TextStyle(fontSize: 40), textAlign: TextAlign.center,), // Wait for data to load
-                ]
-                :
-            <Widget>[
-              new Text('Welcome back,',
-                style: new TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
-                  ),
-                textAlign: TextAlign.center,),
-              new Text(
-                 person.name + '!\n',
-                style: new TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                    decoration: TextDecoration.underline),
-                textAlign: TextAlign.center,),
-              new Text('\nSome of the friends you\'ve made:\n'),
-              for (var i = 0; i < friends.length && i < 4; i++)
-                generatePersonCard(
-                    context,
-                    new PersonFound(
-                        name: friends.toList()[i].name,
-                        photo: friends.toList()[i].photo,
-                        location: friends.toList()[i].location,
-                        interests: friends.toList()[i].interests,
-                        description: friends.toList()[i].description),
-                    i),
-
-            ],
+            children: (person == null)
+                ? <Widget>[
+                    new Text(
+                      '\n\n\n\nLoading...',
+                      style: new TextStyle(fontSize: 40),
+                      textAlign: TextAlign.center,
+                    ), // Wait for data to load
+                  ]
+                : <Widget>[
+                    new Text(
+                      'Welcome back,',
+                      style: new TextStyle(
+                        color: Colors.black,
+                        fontSize: 30,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    new Text(
+                      person.name + '!\n',
+                      style: new TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          decoration: TextDecoration.underline),
+                      textAlign: TextAlign.center,
+                    ),
+                    if (friends.length > 0) // has friends
+                      new Text('\nSome of the friends you\'ve made:\n')
+                    else // has no friends
+                      new Text(
+                        '\nLooks like you still have no connections.\n\nExplore the app to meet new people!',
+                        style: new TextStyle(fontSize: 30),
+                      ),
+                    for (var i = 0; i < friends.length && i < 4; i++)
+                      generatePersonCard(
+                          context,
+                          new PersonFound(
+                              name: friends.toList()[i].name,
+                              photo: friends.toList()[i].photo,
+                              location: friends.toList()[i].location,
+                              interests: friends.toList()[i].interests,
+                              description: friends.toList()[i].description),
+                          i),
+                  ],
           ),
         );
       },
@@ -79,9 +89,11 @@ class HomePageView extends StatelessWidget {
 
   Future<KnownPerson> getPerson(BuildContext context) async {
     final store = StoreProvider.of<AppState>(context);
-    final response =
-    await http.get(store.state.content['profile'] + '/profile/' + store.state.content['user_id']);
+    final response = await http.get(store.state.content['profile'] +
+        '/profile/' +
+        store.state.content['user_id']);
     final map = json.decode(utf8.decode(response.bodyBytes));
+    print("PROFILE: " + map.toString());
     return KnownPerson.fromJson(map);
   }
 
