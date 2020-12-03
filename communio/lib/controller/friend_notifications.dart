@@ -31,6 +31,7 @@ void setupNotifications(String profileId) {
           builder: (context) => ProfilePage(
                 profileId: payload,
                 edit: false,
+                isUser: false,
             )
           )
         );

@@ -6,6 +6,7 @@ class ProfileInterests extends StatefulWidget {
   final List interests;
   final String type;
   final String name;
+  final bool isUser;
   final bool edit;
   final Function(String, String) adding;
   final Function(String, String) removing;
@@ -16,25 +17,27 @@ class ProfileInterests extends StatefulWidget {
       this.type,
       @required this.edit,
       @required this.name,
+      @required this.isUser,
       this.adding,
       this.removing})
       : super(key: key);
 
   @override
   _ProfileInterestsState createState() =>
-      _ProfileInterestsState(interests, type, edit, name, adding, removing);
+      _ProfileInterestsState(interests, type, edit, name, isUser, adding, removing);
 }
 
 class _ProfileInterestsState extends State<ProfileInterests> {
   final List interests;
   final String type;
   final String name;
+  final bool isUser;
   final bool edit;
   final Function(String, String) adding;
   final Function(String, String) removing;
 
   _ProfileInterestsState(this.interests, this.type, this.edit, this.name,
-      this.adding, this.removing);
+      this.isUser, this.adding, this.removing);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +101,8 @@ class _ProfileInterestsState extends State<ProfileInterests> {
               interests.remove(interest);
             });
           },
-          filterType: 'interest',
+            filterType:
+            (isUser) ? 'userInterest' : 'interest',
         ),
       ));
     });

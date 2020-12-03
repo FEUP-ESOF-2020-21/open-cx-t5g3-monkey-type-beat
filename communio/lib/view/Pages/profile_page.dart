@@ -20,9 +20,10 @@ class ProfilePage extends StatelessWidget {
   final String profileId;
   KnownPerson knownPerson;
   final bool edit;
+  final bool isUser;
   static Future<KnownPerson> person = null;
 
-  ProfilePage({this.profileId, this.knownPerson, @required this.edit}) {
+  ProfilePage({this.profileId, this.knownPerson, @required this.edit, @required this.isUser}) {
     if (person == null) person = getPerson(profileId);
   }
 
@@ -85,6 +86,7 @@ class ProfilePage extends StatelessWidget {
           name: 'Interests',
           type: 'tags',
           edit: edit,
+          isUser: isUser,
           adding: addingFunc,
           removing: removeFunc,
         ),
@@ -93,6 +95,7 @@ class ProfilePage extends StatelessWidget {
           name: 'Programming Languages',
           type: 'programming_languages',
           edit: edit,
+          isUser: isUser,
           adding: addingFunc,
           removing: removeFunc,
         ),
@@ -101,6 +104,7 @@ class ProfilePage extends StatelessWidget {
           name: 'Skills',
           type: 'skills',
           edit: edit,
+          isUser: isUser,
           adding: addingFunc,
           removing: removeFunc,
         )

@@ -38,11 +38,14 @@ class _FilterCardState extends State<FilterCard> {
               filter,
               style: Theme.of(context).textTheme.body2.apply(fontSizeDelta: 0),
             ),
-            if(filterType == 'filter')
+            if(filterType == 'filter' || filterType == 'userInterest')
               IconButton(
                 onPressed: () {
                   this.removeFilter();
-                  Navigator.of(context).pushNamed('/PeopleSearch');
+                  if(filterType == 'filter')
+                    Navigator.of(context).pushNamed('/PeopleSearch');
+                  else
+                    Navigator.of(context).pushNamed('/Profile');
                 },
                 icon: Icon(
                   Icons.cancel,
