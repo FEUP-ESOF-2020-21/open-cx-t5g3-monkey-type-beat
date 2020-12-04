@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:communio/model/known_person.dart';
 import 'package:communio/redux/actions.dart';
 
 import 'package:communio/model/app_state.dart';
@@ -20,11 +21,6 @@ class LogInForm extends StatefulWidget {
 
 class LogInFormState extends State<LogInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _agreedToTOS = false;
-
-  final List interests = new List();
-  final List programmingLanguages = new List();
-  final List skills = new List();
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -59,28 +55,16 @@ class LogInFormState extends State<LogInForm> {
       }
       print("""
       Email: $email,
-      Test Password: $password,
-      Interests: $interests,
-      Programming Languages: $programmingLanguages
-      Skills: $skills""");
-      var req = json.encode({
-        "email": email,
-        "password": password,
-      });
-
-      this.addPerson(context, req).then((response) {
-        if (response['status'] != 200) {
-          Toast.show(response['msg'], context, duration: 10);
+      Test Password: $password""");
+      
+      this.getUser(context, email, password).then((value) {
+        if(value == null){
+          Toast.show('Couldn\'t find user/password combination', context);
           return;
         }
-
-        getUser(context, email).then((value) {
-          StoreProvider.of<AppState>(context).dispatch(UpdateUser(value));
-          Navigator.of(context).pushNamed('/Homepage');
-        });
-
+        StoreProvider.of<AppState>(context).dispatch(UpdateUser(value.uuid));
+        Navigator.of(context).pushNamed('/Homepage');
       });
-      final testPassword = passwordController.text.trim();
     }
   }
 
@@ -111,18 +95,24 @@ class LogInFormState extends State<LogInForm> {
                 ))));
   }
 
-  Future<String> getUser(BuildContext context, String email) async {
+  Future<KnownPerson> getUser(BuildContext context, String email, String password) async {
     final store = StoreProvider.of<AppState>(context);
     final response = await http.get('${store.state.content['profile']}');
     var map = json.decode(utf8.decode(response.bodyBytes));
-    var id;
+    var user_id = null;
     for (var item in map) {
       if (item['email'] == email) {
-        id = item['_id'];
+        user_id = item['_id'];
         break;
       }
     }
-    return id;
+    if(user_id == null) return null;
+    final user = await http.get('${store.state.content['profile']}/profile/'+user_id);
+    final map2 = json.decode(utf8.decode(user.bodyBytes));
+    var u = KnownPerson.fromJson(map2);
+
+    if(map2['password'] != password) return null;
+    return u;
   }
 
   Future<Map<String,Object>> addPerson(BuildContext context, reg) async {
@@ -139,13 +129,5 @@ class LogInFormState extends State<LogInForm> {
     return {"status": response.statusCode, "msg": utf8.decode(response.bodyBytes)};
   }
 
-  bool _agreedWithTerms() {
-    return _agreedToTOS;
-  }
 
-  void _setAgreedToTOS(bool value) {
-    setState(() {
-      _agreedToTOS = value;
-    });
-  }
 }

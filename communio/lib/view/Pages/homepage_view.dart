@@ -93,7 +93,6 @@ class HomePageView extends StatelessWidget {
         '/profile/' +
         store.state.content['user_id']);
     final map = json.decode(utf8.decode(response.bodyBytes));
-    print("PROFILE: " + map.toString());
     return KnownPerson.fromJson(map);
   }
 
