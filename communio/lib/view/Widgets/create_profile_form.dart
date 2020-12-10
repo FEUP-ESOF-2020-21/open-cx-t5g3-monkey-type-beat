@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:communio/redux/actions.dart';
-
+import 'package:communio/controller/redux/actions.dart';
 import 'package:communio/model/app_state.dart';
 import 'package:communio/view/Widgets/image_upload.dart';
 import 'package:communio/view/Widgets/insert_email_field.dart';

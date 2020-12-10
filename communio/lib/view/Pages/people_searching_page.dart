@@ -1,7 +1,7 @@
 
+import 'package:communio/controller/redux/action_creators.dart';
 import 'package:communio/model/app_state.dart';
 import 'package:communio/model/person_found.dart';
-import 'package:communio/redux/action_creators.dart';
 import 'package:communio/view/Pages/general_page_view.dart';
 import 'package:communio/view/Widgets/filters.dart';
 import 'package:communio/view/Widgets/friend_information.dart';

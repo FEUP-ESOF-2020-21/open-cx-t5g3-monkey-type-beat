@@ -1,7 +1,7 @@
 import 'package:communio/controller/middleware.dart';
+import 'package:communio/controller/redux/reducers.dart';
 import 'package:communio/model/app_state.dart';
 import 'package:communio/model/person_found.dart';
-import 'package:communio/redux/reducers.dart';
 import 'package:communio/view/Pages/people_searching_page.dart';
 import 'package:communio/view/Widgets/photo_avatar.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
+import 'package:communio/controller/redux/action_creators.dart';
 import 'package:communio/model/app_state.dart';
-import 'package:communio/redux/action_creators.dart';
 import 'package:communio/view/Pages/secondary_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';

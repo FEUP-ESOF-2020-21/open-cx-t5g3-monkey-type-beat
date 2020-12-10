@@ -1,6 +1,5 @@
 import 'package:communio/controller/friend_notifications.dart';
 import 'package:communio/model/app_state.dart';
-import 'package:communio/redux/reducers.dart';
 import 'package:communio/view/Pages/bluetooth_beacon_selection.dart';
 import 'package:communio/view/Pages/connected_listing_page.dart';
 import 'package:communio/view/Pages/create_profile_page.dart';
@@ -17,10 +16,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'controller/redux/reducers.dart';
 import 'view/theme.dart';
 import 'model/app_state.dart';
 import 'package:redux/redux.dart';
-import 'redux/reducers.dart';
 
 
 
