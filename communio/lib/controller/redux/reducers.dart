@@ -1,4 +1,5 @@
-import '../model/app_state.dart';
+import 'package:communio/model/app_state.dart';
+
 import 'actions.dart';
 
 AppState appReducers(AppState state, dynamic action) {

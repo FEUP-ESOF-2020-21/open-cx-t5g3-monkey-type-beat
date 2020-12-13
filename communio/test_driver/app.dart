@@ -1,10 +1,10 @@
+import 'package:communio/controller/redux/reducers.dart';
 import 'package:communio/model/app_state.dart';
 import 'package:communio/model/person_found.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:communio/main.dart' as app;
 import 'package:redux/redux.dart';
 import 'package:communio/controller/middleware.dart';
-import 'package:communio/redux/reducers.dart';
 
 
 void main() {

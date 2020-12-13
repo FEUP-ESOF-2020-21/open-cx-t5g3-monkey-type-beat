@@ -2,15 +2,16 @@ import 'dart:convert';
 
 import 'package:communio/model/app_state.dart';
 import 'package:communio/model/friend_request.dart';
-import 'package:communio/view/Pages/general_page_view.dart';
 import 'package:communio/view/Widgets/friend_information.dart';
 import 'package:communio/view/Widgets/friend_request_button.dart';
 import 'package:communio/view/Widgets/future_page_builder.dart';
 import 'package:communio/view/Widgets/photo_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
+
+import 'general_page_view.dart';
 
 class FriendRequestsPage extends StatelessWidget {
   final horizontalPadding = 15.0;
@@ -28,14 +29,11 @@ class FriendRequestsPage extends StatelessWidget {
 
   Future<Iterable<FriendRequest>> getPerson(BuildContext context) async {
     final String profile =
-        StoreProvider.of<AppState>(context).state.content['user_id'];
-    final String url =
-        StoreProvider.of<AppState>(context).state.content['friend_request'];
-    Logger().i('$url/$profile');
+    StoreProvider.of<AppState>(context).state.content['user_id'];
     final response = await http
-        .get('$url/$profile');
+        .get('${DotEnv().env['API_URL']}users/matches/requests/$profile');
     final Iterable friendRequests =
-        json.decode(utf8.decode(response.bodyBytes));
+    json.decode(utf8.decode(response.bodyBytes));
     final friends = friendRequests
         .map((friendRequest) => FriendRequest.fromJson(friendRequest));
     return friends;
@@ -80,7 +78,7 @@ class FriendRequestsPage extends StatelessWidget {
     children.add(Container(
       padding: EdgeInsets.all(15.0),
       margin:
-          EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.01),
+      EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.01),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(

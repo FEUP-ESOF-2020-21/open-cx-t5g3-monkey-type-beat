@@ -41,7 +41,6 @@ class _FriendRequestButtonState extends State<FriendRequestButton> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         buildIcon(
-            key: Key('${friendRequest.id}-accept'),
             child: Icon(
               Icons.check,
               color: Colors.white,
@@ -57,9 +56,9 @@ class _FriendRequestButtonState extends State<FriendRequestButton> {
                 accepted = true;
               });
             },
-            fillColor: Theme.of(context).colorScheme.primary),
+            fillColor: Theme.of(context).colorScheme.primary
+        ),
         buildIcon(
-            key: Key('${friendRequest.id}-reject'),
             child: Icon(
               Icons.clear,
               color: Theme.of(context).colorScheme.primary,
@@ -80,11 +79,9 @@ class _FriendRequestButtonState extends State<FriendRequestButton> {
     );
   }
 
-  buildIcon(
-      {Key key, @required child, @required onPressed, @required fillColor}) {
+  buildIcon({@required child, @required onPressed, @required fillColor}) {
     final size = MediaQuery.of(context).size;
     return Container(
-      key: key,
       margin: EdgeInsets.only(right: size.width * 0.03),
       child: SizedBox(
           width: size.width * 0.08,
