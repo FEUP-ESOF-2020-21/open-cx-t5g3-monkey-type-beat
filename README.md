@@ -173,8 +173,11 @@ These tests were implemented for the following feature:
 - Users should be able to delete their account.
 
 The following tests were implemented for this User Story:
+
 • Given a user that is already signed up, then it is possible for them to go to the settings page and choose to delete their account and a form pops up to confirm its deletion.
+
 • Given a user that chooses to delete their account, then it is possible for them to confirm that action and a message pops up verifying the deletion.
+
 • Given a user that chooses to delete their account, then it is possible for them to cancel that action and make the form disappear without any further action.
 
 Test Case Specification
