@@ -85,7 +85,7 @@ API_URL=https://open-cx-communio.herokuapp.com/
 
 ### User stories
 
-Our current User Stories are in our [Trello](https://trello.com/b/Kat9JPpt).
+Our current User Stories are in our [Trello](https://trello.com/b/Kat9JPpt) and each card contains a mockup for the User Story.
 
 
 ### Domain model
@@ -95,38 +95,73 @@ Our current User Stories are in our [Trello](https://trello.com/b/Kat9JPpt).
 </div>
 
 
+---
+
 ## Architecture and Design
-### Logical Architecture
+The architecture of a software system encompasses the set of key decisions about its overall organization.
 
-Like the original project, the application uses a MVC architecture where the controller as the works with the aid of a redux implementation. The use of this implementation facilitates the app's state transitions.
+A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
 
-<div align="center">
-    <img width="600" src="assets/MVC.png">
-</div>
+To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
+
+In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+
+### Logical architecture
+The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
+
+It can be beneficial to present the system both in a horizontal or vertical decomposition:
+* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts;
+* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
 
 ### Physical architecture
-#### Component diagram
-<div align="center">
-    <img width="600" src="assets/ComponentDiagram.png">
-</div>
 
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
+There were no changes on the original Physical Architecture from the first implementation.
 
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+![Deployment Diagram](assets/deployment-diagram.png)
 
 ### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+The following user stories were completed during the implementation of the product:
+
+#### [As an user, when I open the app, I want to have displayed some information regarding my list of friends](https://trello.com/c/pfFkFLHP/14-weight-2-as-an-user-when-i-open-the-app-i-want-to-have-displayed-some-information-regarding-my-list-of-friends)
+
+#### [As an user I want to be able remove my current filters and profile tags](https://trello.com/c/P2A8m1Ml/2-weight-3-as-an-user-i-want-to-be-able-remove-my-current-filters-and-profile-tags)
+
+#### [As an user I want to be able to view my profile so that I can view and edit my information](https://trello.com/c/eUoRRmB2/15-weight-3-as-an-user-i-want-to-be-able-to-view-my-profile-so-that-i-can-view-and-edit-my-information)
+
+#### [As an user, I want to be able to see my friend's profile pages and check information regarding them](https://trello.com/c/kDfoQywj/1-weight-3-as-an-user-i-want-to-be-able-to-see-my-friends-profile-pages-and-check-information-regarding-them)
+
+#### [As a, user, I want to be able to create my own profile, so that I can interact with other users in the platform](https://trello.com/c/Ddgk7Bfb/16-weight-4-as-a-user-i-want-to-be-able-to-create-my-own-profile-so-that-i-can-interact-with-other-users-in-the-platform)
+
 
 ---
 
 ## Implementation
-Regular product increments are a good practice of product management.
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+### v0.1 - 06/11/2020
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+* Initial version of the report
+* Fixed flutter and flutter-packages version conflicts coming from the previous implementation of the project
+* First version of the homepage implemented
+
+
+### [v0.2](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g3-monkey-type-beat/releases/tag/v0.2) - 20/11/2020
+
+* User's profile page now displaying properly
+* Implemented filter removing
+* Added more useful data from the database to the Home page
+
+### [v0.3](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g3-monkey-type-beat/releases/tag/v0.3) - 04/12/2020
+
+* The user can now create a new profile
+* Friends page now accessible without friends interests being removable by the user
+* Profile page interests now removable
+* Solved small issues on previously implemented user story (filter removing) which was not working as it should
+
+
+### [v0.4]() - 18/12/2020
+
+* Final version of the report
 
 ---
 ## Test
@@ -140,25 +175,8 @@ In this section it is only expected to include the following:
 A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
 
 ---
-## Configuration and change management
-
-Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
-
-For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
-
-
----
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
+We used [Trello](https://trello.com/b/Kat9JPpt) to manage our project by using the board to assign tasks to each member.
 
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
