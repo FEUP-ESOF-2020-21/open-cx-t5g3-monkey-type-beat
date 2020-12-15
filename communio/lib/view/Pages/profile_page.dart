@@ -320,7 +320,9 @@ class ProfilePage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(height * 0.25)),
                   textColor: Theme.of(context).canvasColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     'No',
                     style: Theme.of(context)
