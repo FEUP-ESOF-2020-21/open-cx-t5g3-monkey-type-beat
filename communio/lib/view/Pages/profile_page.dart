@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:communio/model/app_state.dart';
 import 'package:communio/model/known_person.dart';
 import 'package:communio/view/Pages/secondary_page_view.dart';
-import 'package:communio/view/Widgets/future_page_builder.dart';
 import 'package:communio/view/Widgets/photo_avatar.dart';
 import 'package:communio/view/Widgets/profile_interests.dart';
 import 'package:communio/view/Widgets/social_media_column.dart';
+import 'package:communio/view/Widgets/create_profile_form.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -107,9 +107,39 @@ class ProfilePage extends StatelessWidget {
           isUser: isUser,
           adding: addingFunc,
           removing: removeFunc,
-        )
+        ),
+        if(isUser)
+          buildDeleteButton(context),
       ],
+
     );
+  }
+
+  Widget buildDeleteButton(BuildContext context) {
+    final width = MediaQuery.of(context).size.width * 0.5;
+    final height = MediaQuery.of(context).size.width * 0.15;
+
+    return Padding(
+        padding: EdgeInsets.only(bottom: 10),
+        child: Center(
+            child: ButtonTheme(
+                buttonColor: Colors.redAccent,
+                minWidth: width,
+                height: height,
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(height * 0.25)),
+                  textColor: Theme.of(context).canvasColor,
+                  onPressed: () {
+                  },
+                  child: Text(
+                    'Delete Account',
+                    style: Theme.of(context)
+                        .textTheme
+                        .button
+                        .apply(fontSizeDelta: -5),
+                  ),
+                ))));
   }
 
   Widget padWidget({Widget child, Size query}) {
