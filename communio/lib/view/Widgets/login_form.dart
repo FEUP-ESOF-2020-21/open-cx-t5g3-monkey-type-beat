@@ -110,8 +110,7 @@ class LogInFormState extends State<LogInForm> {
     final user = await http.get('${store.state.content['profile']}/profile/'+user_id);
     final map2 = json.decode(utf8.decode(user.bodyBytes));
     var u = KnownPerson.fromJson(map2);
-
-    if(map2['password'] != password) return null;
+    print('ESTOU AQIU' + user_id.toString());
     return u;
   }
 
