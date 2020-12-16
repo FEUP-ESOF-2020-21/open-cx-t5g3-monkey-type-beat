@@ -4,6 +4,7 @@ import 'package:communio/view/Pages/bluetooth_beacon_selection.dart';
 import 'package:communio/view/Pages/connected_listing_page.dart';
 import 'package:communio/view/Pages/create_profile_page.dart';
 import 'package:communio/view/Pages/friend_requests_page.dart';
+import 'package:communio/view/Pages/login_page.dart';
 import 'package:communio/view/Pages/people_searching_page.dart';
 import 'package:communio/view/Pages/qrcode_view.dart';
 import 'package:communio/view/Pages/profile_page.dart';
@@ -20,6 +21,8 @@ import 'controller/redux/reducers.dart';
 import 'view/theme.dart';
 import 'model/app_state.dart';
 import 'package:redux/redux.dart';
+
+import 'package:communio/view/Pages/login_page.dart';
 
 
 
@@ -116,6 +119,10 @@ class MyAppState extends State<MyApp> {
                 return MaterialPageRoute(
                     builder: (context) => CreateProfilePage(),
                     settings: settings);
+              case '/LogIn':
+                return MaterialPageRoute(
+                    builder: (context) => LogInPage(),
+                   settings: settings);
             }
           }),
     );
