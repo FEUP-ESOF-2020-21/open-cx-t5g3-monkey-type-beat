@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:communio/model/known_person.dart';
-import 'package:communio/redux/actions.dart';
+import 'package:communio/controller/redux/actions.dart';
 
 import 'package:communio/model/app_state.dart';
 import 'package:communio/view/Widgets/image_upload.dart';
