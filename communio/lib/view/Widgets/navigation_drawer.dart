@@ -25,6 +25,7 @@ class NavigationDrawerState extends State<NavigationDrawer> {
     "QRCode",
     "Profile",
     "CreateProfile",
+    "LogIn",
     "Friend-Requests"
   ];
 
