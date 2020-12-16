@@ -98,20 +98,19 @@ Our current User Stories are in our [Trello](https://trello.com/b/Kat9JPpt) and 
 ---
 
 ## Architecture and Design
-The architecture of a software system encompasses the set of key decisions about its overall organization.
+### Logical Architecture
 
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
+Like the original project, the application uses a MVC architecture where the controller as the works with the aid of a redux implementation. The use of this implementation facilitates the app's state transitions.
 
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
+<div align="center">
+    <img width="600" src="assets/MVC.png">
+</div>
 
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
-
-### Logical architecture
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
-
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
-* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts;
-* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+### Physical architecture
+#### Component diagram
+<div align="center">
+    <img width="600" src="assets/ComponentDiagram.png">
+</div>
 
 ### Physical architecture
 
@@ -166,13 +165,22 @@ The following user stories were completed during the implementation of the produ
 ---
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+Test Plan
+In order to test this app, flutter gherkin is used to develop acceptance tests and unit tests.
 
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
+These tests were implemented for the following feature:
+- Users should be able to delete their account.
 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+The following tests were implemented for this User Story:
+
+• Given a user that is already signed up, then it is possible for them to go to the settings page and choose to delete their account and a form pops up to confirm its deletion.
+
+• Given a user that chooses to delete their account, then it is possible for them to confirm that action and a message pops up verifying the deletion.
+
+• Given a user that chooses to delete their account, then it is possible for them to cancel that action and make the form disappear without any further action.
+
+Test Case Specification
+The acceptance tests mentioned were added to the respective user story card. They were implemented using flutter gherkin. The implementation can be found in the flutter_driver folder. Furthermore, in the test folder, some unit tests can be found.
 
 ---
 
