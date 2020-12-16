@@ -14,6 +14,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:toast/toast.dart';
+
 
 import '../theme.dart';
 import 'general_page_view.dart';
@@ -322,6 +324,7 @@ class ProfilePage extends StatelessWidget {
                 onPressed: () {
                   StoreProvider.of<AppState>(context)
                       .dispatch(UpdateUser(null));
+                  Toast.show('Deleting...', context, duration: 5);
                   Navigator.of(context).pushNamed('/LogIn');
                 },
                 child: Text(
