@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:communio/controller/redux/action_creators.dart';
+import 'package:communio/controller/redux/actions.dart';
 import 'package:communio/model/app_state.dart';
 import 'package:communio/model/known_person.dart';
 import 'package:communio/view/Pages/secondary_page_view.dart';
@@ -24,10 +25,11 @@ class ProfilePage extends StatelessWidget {
   final bool isUser;
   static Future<KnownPerson> person = null;
 
-  ProfilePage({this.profileId,
-    this.knownPerson,
-    @required this.edit,
-    @required this.isUser}) {
+  ProfilePage(
+      {this.profileId,
+      this.knownPerson,
+      @required this.edit,
+      @required this.isUser}) {
     if (person == null) person = getPerson(profileId);
   }
 
@@ -59,15 +61,10 @@ class ProfilePage extends StatelessWidget {
   }
 
   buildPerson(BuildContext context, KnownPerson person) {
-    final query = MediaQuery
-        .of(context)
-        .size;
+    final query = MediaQuery.of(context).size;
     final Function(String, String) addingFunc = (interest, type) async {
       final String profile =
-      StoreProvider
-          .of<AppState>(context)
-          .state
-          .content['user_id'];
+          StoreProvider.of<AppState>(context).state.content['user_id'];
       final Map<String, String> body = {'$type': interest};
       await http.put('${DotEnv().env['API_URL']}users/tags/$profile',
           body: json.encode(body),
@@ -77,10 +74,7 @@ class ProfilePage extends StatelessWidget {
     };
     final Function(String, String) removeFunc = (interest, type) async {
       final String profile =
-      StoreProvider
-          .of<AppState>(context)
-          .state
-          .content['user_id'];
+          StoreProvider.of<AppState>(context).state.content['user_id'];
       final Map<String, String> body = {'$type': interest};
       await http.post('${DotEnv().env['API_URL']}users/tags/$profile',
           body: json.encode(body),
@@ -88,54 +82,61 @@ class ProfilePage extends StatelessWidget {
             HttpHeaders.contentTypeHeader: 'application/json',
           });
     };
-    return ListView(
-      children: <Widget>[
-        buildImage(context, person, query),
-        buildName(person, context, query),
-        buildLocation(person, context, query),
-        buildDescription(person, context, query),
-        buildSocialMedia(person, context, query),
-        ProfileInterests(
-          interests: person.interests,
-          name: 'Interests',
-          type: 'tags',
-          edit: edit,
-          isUser: isUser,
-          adding: addingFunc,
-          removing: removeFunc,
-        ),
-        ProfileInterests(
-          interests: person.programmingLanguages,
-          name: 'Programming Languages',
-          type: 'programming_languages',
-          edit: edit,
-          isUser: isUser,
-          adding: addingFunc,
-          removing: removeFunc,
-        ),
-        ProfileInterests(
-          interests: person.skills,
-          name: 'Skills',
-          type: 'skills',
-          edit: edit,
-          isUser: isUser,
-          adding: addingFunc,
-          removing: removeFunc,
-        ),
-        if (isUser) buildDeleteButton(context),
-      ],
-    );
+    if (profileId != null)
+      return ListView(
+        children: <Widget>[
+          buildImage(context, person, query),
+          buildName(person, context, query),
+          buildLocation(person, context, query),
+          buildDescription(person, context, query),
+          buildSocialMedia(person, context, query),
+          ProfileInterests(
+            interests: person.interests,
+            name: 'Interests',
+            type: 'tags',
+            edit: edit,
+            isUser: isUser,
+            adding: addingFunc,
+            removing: removeFunc,
+          ),
+          ProfileInterests(
+            interests: person.programmingLanguages,
+            name: 'Programming Languages',
+            type: 'programming_languages',
+            edit: edit,
+            isUser: isUser,
+            adding: addingFunc,
+            removing: removeFunc,
+          ),
+          ProfileInterests(
+            interests: person.skills,
+            name: 'Skills',
+            type: 'skills',
+            edit: edit,
+            isUser: isUser,
+            adding: addingFunc,
+            removing: removeFunc,
+          ),
+          if (isUser) buildDeleteButton(context),
+        ],
+      );
+    else
+      return Container(
+          child: ListView(
+        padding: EdgeInsets.all(20.0),
+        shrinkWrap: false,
+        children: [
+          Text(
+              '\nNo account logged in.\n\nCreate a new account or login to your account to explore the app!',
+              style: new TextStyle(fontSize: 30),
+              textAlign: TextAlign.center),
+        ],
+      ));
   }
 
   Widget buildDeleteButton(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width * 0.5;
-    final height = MediaQuery
-        .of(context)
-        .size
-        .width * 0.15;
+    final width = MediaQuery.of(context).size.width * 0.5;
+    final height = MediaQuery.of(context).size.width * 0.15;
 
     return Padding(
         padding: EdgeInsets.only(bottom: 10),
@@ -147,9 +148,7 @@ class ProfilePage extends StatelessWidget {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(height * 0.25)),
-                  textColor: Theme
-                      .of(context)
-                      .canvasColor,
+                  textColor: Theme.of(context).canvasColor,
                   onPressed: () {
                     showDialog(
                         context: context,
@@ -167,14 +166,13 @@ class ProfilePage extends StatelessWidget {
                                   Text(
                                       "Are you sure you want to delete your account?",
                                       textAlign: TextAlign.center,
-                                      style: Theme
-                                          .of(context)
+                                      style: Theme.of(context)
                                           .textTheme
                                           .subtitle1
                                           .apply(
-                                        color: cyanColor,
-                                        fontWeightDelta: 2,
-                                      )),
+                                            color: cyanColor,
+                                            fontWeightDelta: 2,
+                                          )),
                                   buildDeleteFormButtons(context),
                                 ]),
                               ));
@@ -182,8 +180,7 @@ class ProfilePage extends StatelessWidget {
                   },
                   child: Text(
                     'Delete Account',
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .button
                         .apply(fontSizeDelta: -5),
@@ -207,13 +204,12 @@ class ProfilePage extends StatelessWidget {
           child: (person.name == null)
               ? new Text("")
               : Text(
-            person.name,
-            style: Theme
-                .of(context)
-                .textTheme
-                .body2
-                .apply(fontSizeDelta: 10),
-          ),
+                  person.name,
+                  style: Theme.of(context)
+                      .textTheme
+                      .body2
+                      .apply(fontSizeDelta: 10),
+                ),
         ),
         query: query);
   }
@@ -247,12 +243,9 @@ class ProfilePage extends StatelessWidget {
               (person.location == null)
                   ? new Text("")
                   : Text(
-                person.location,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .body2,
-              )
+                      person.location,
+                      style: Theme.of(context).textTheme.body2,
+                    )
             ],
           ),
         ),
@@ -268,12 +261,9 @@ class ProfilePage extends StatelessWidget {
           child: (person.description == null)
               ? new Text("")
               : Text(
-            person.description,
-            style: Theme
-                .of(context)
-                .textTheme
-                .body2,
-          ),
+                  person.description,
+                  style: Theme.of(context).textTheme.body2,
+                ),
         ),
         query);
   }
@@ -284,8 +274,8 @@ class ProfilePage extends StatelessWidget {
         SocialMediaColumn(person: person, edit: edit), query);
   }
 
-  buildRowWithItem(BuildContext context, IconData iconData, Widget widget,
-      Size query) {
+  buildRowWithItem(
+      BuildContext context, IconData iconData, Widget widget, Size query) {
     return Padding(
       padding: EdgeInsets.only(
         top: query.height * 0.03,
@@ -313,14 +303,8 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget buildDeleteFormButtons(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width * 0.2;
-    final height = MediaQuery
-        .of(context)
-        .size
-        .width * 0.10;
+    final width = MediaQuery.of(context).size.width * 0.2;
+    final height = MediaQuery.of(context).size.width * 0.10;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 30, top: 30),
@@ -334,16 +318,15 @@ class ProfilePage extends StatelessWidget {
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(height * 0.25)),
-                textColor: Theme
-                    .of(context)
-                    .canvasColor,
+                textColor: Theme.of(context).canvasColor,
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/Homepage');
+                  StoreProvider.of<AppState>(context)
+                      .dispatch(UpdateUser(null));
+                  Navigator.of(context).pushNamed('/LogIn');
                 },
                 child: Text(
                   'Yes',
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .button
                       .apply(fontSizeDelta: -5),
@@ -356,16 +339,13 @@ class ProfilePage extends StatelessWidget {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(height * 0.25)),
-                  textColor: Theme
-                      .of(context)
-                      .canvasColor,
+                  textColor: Theme.of(context).canvasColor,
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: Text(
                     'No',
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .button
                         .apply(fontSizeDelta: -5),
@@ -379,7 +359,7 @@ class ProfilePage extends StatelessWidget {
 
   Future<KnownPerson> getPerson(String profileId) async {
     final response =
-    await http.get('${DotEnv().env['API_URL']}users/profile/$profileId');
+        await http.get('${DotEnv().env['API_URL']}users/profile/$profileId');
     final map = json.decode(utf8.decode(response.bodyBytes));
     this.knownPerson = KnownPerson.fromJson(map);
     return KnownPerson.fromJson(map);

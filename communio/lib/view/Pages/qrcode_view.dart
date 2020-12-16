@@ -131,6 +131,7 @@ class _QRCodePage extends State<QRCodePage>
         StoreProvider.of<AppState>(context).state.content['user_id'];
     final scalinngFactor = 0.17;
     Logger().i("QR code created with info: ${dataToQR}");
+    if(dataToQR != null)
     return Center(
         child: QrImage(
       data: dataToQR,
@@ -154,6 +155,16 @@ class _QRCodePage extends State<QRCodePage>
         );
       },
     ));
+    else
+      return Container(
+      child: Center(
+        child: Text(
+          "Uh oh! Something went wrong...",
+          style: new TextStyle(fontSize: 30),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
   }
 
   String __responseMessage(int code) {
