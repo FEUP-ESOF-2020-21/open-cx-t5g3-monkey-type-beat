@@ -1,5 +1,9 @@
+import 'package:communio/controller/redux/actions.dart';
+import 'package:communio/model/app_state.dart';
 import 'package:communio/view/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:toast/toast.dart';
 
 class NavigationDrawer extends StatefulWidget {
   final BuildContext parentContext;
@@ -63,7 +67,10 @@ class NavigationDrawerState extends State<NavigationDrawer> {
 
         ],
       ),
-      onTap: () => Navigator.pushReplacementNamed(context, '/Terminar sessão'),
+      onTap: () => {StoreProvider.of<AppState>(context)
+          .dispatch(UpdateUser(null)),
+        Toast.show('Login Out...', context, duration: 5),
+    Navigator.of(context).pushNamed('/Homepage')},
     );
   }
 
