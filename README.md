@@ -130,8 +130,13 @@ The following user stories were completed during the implementation of the produ
 
 #### [As an user, I want to be able to see my friend's profile pages and check information regarding them](https://trello.com/c/kDfoQywj/1-weight-3-as-an-user-i-want-to-be-able-to-see-my-friends-profile-pages-and-check-information-regarding-them)
 
-#### [As a, user, I want to be able to create my own profile, so that I can interact with other users in the platform](https://trello.com/c/Ddgk7Bfb/16-weight-4-as-a-user-i-want-to-be-able-to-create-my-own-profile-so-that-i-can-interact-with-other-users-in-the-platform)
+#### [As an user, I want to be able to create my own profile, so that I can interact with other users in the platform](https://trello.com/c/Ddgk7Bfb/16-weight-4-as-a-user-i-want-to-be-able-to-create-my-own-profile-so-that-i-can-interact-with-other-users-in-the-platform)
 
+#### [As an user, I want to be able to logout from my account](https://trello.com/c/uBnAL5UN/18-weight-1-as-an-user-i-want-to-be-able-to-logout-from-my-account)
+
+#### [As an user, I want to be able to log in to my account](https://trello.com/c/k8enPfAv/17-weight-3-as-an-user-i-want-to-be-able-to-log-in-to-my-account)
+
+#### [As a client, I want the users to have the option of deleting their account](https://trello.com/c/5GwKsnsJ/12-weight-3-as-a-client-i-want-the-users-to-have-the-option-of-deleting-their-account)
 
 ---
 
@@ -161,6 +166,8 @@ The following user stories were completed during the implementation of the produ
 ### [v0.4]() - 18/12/2020
 
 * Final version of the report
+* Delete account feature added
+* Login and logout implemented
 
 ---
 ## Test
