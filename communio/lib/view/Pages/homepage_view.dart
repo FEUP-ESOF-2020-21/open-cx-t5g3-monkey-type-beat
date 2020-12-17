@@ -20,6 +20,23 @@ class HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(StoreProvider.of<AppState>(context).state.content.toString());
+    if(StoreProvider.of<AppState>(context).state.content['user_id'] == null)
+      return GeneralPageView(child: Container(
+          child: ListView(
+            padding: EdgeInsets.all(20.0),
+            shrinkWrap: false,
+            children: [Image.asset('assets/icon/icon.png', alignment: Alignment.topCenter, height: 150,),
+              Text(
+                  '\n\nNo account logged in.\nCreate a new account or login to your account to explore the app!',
+                  style: new TextStyle(fontSize: 30, ),
+                  textAlign: TextAlign.center
+              ),
+            ],
+          )));
+
+
+    else
     return GeneralPageView(
       child: createScrollableCardView(context),
       floatingActionButton: createActionButton(context),

@@ -125,15 +125,16 @@ class ProfilePage extends StatelessWidget {
     else
       return Container(
           child: ListView(
-        padding: EdgeInsets.all(20.0),
-        shrinkWrap: false,
-        children: [
-          Text(
-              '\nNo account logged in.\n\nCreate a new account or login to your account to explore the app!',
-              style: new TextStyle(fontSize: 30),
-              textAlign: TextAlign.center),
-        ],
-      ));
+            padding: EdgeInsets.all(20.0),
+            shrinkWrap: false,
+            children: [Image.asset('assets/icon/icon.png', alignment: Alignment.topCenter, height: 150,),
+              Text(
+                  '\n\nNo account logged in.\nCreate a new account or login to your account to explore the app!',
+                  style: new TextStyle(fontSize: 30, ),
+                  textAlign: TextAlign.center
+              ),
+            ],
+          ));
   }
 
   Widget buildDeleteButton(BuildContext context) {
