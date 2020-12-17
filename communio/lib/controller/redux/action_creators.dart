@@ -82,6 +82,7 @@ ThunkAction<AppState> addNewFilter(String filter) {
 
 ThunkAction<AppState> removeFilter(String filter) {
   return (Store<AppState> store) async {
+    print(store.state.content);
     final Set<String> filters = store.state.content['current_filters'];
     if (filters.contains(filter)) {
       filters.remove(filter);

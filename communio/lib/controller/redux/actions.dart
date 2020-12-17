@@ -89,6 +89,15 @@ class SelectActiveDevice implements ReduceableAction {
   }
 }
 
+class DeleteProfile implements ReduceableAction {
+  final String userId;
+
+  DeleteProfile(this.userId);
+  @override
+  AppState reduceAction(AppState state) {
+
+  }
+}
 class UpdateUser implements ReduceableAction {
   final String id;
 
