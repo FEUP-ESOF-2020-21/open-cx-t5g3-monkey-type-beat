@@ -112,9 +112,9 @@ Like the original project, the application uses a MVC architecture where the con
     <img width="600" src="assets/ComponentDiagram.png">
 </div>
 
-### Physical architecture
+### Deployment Diagram
 
-There were no changes on the original Physical Architecture from the first implementation.
+There were no changes on the original Deployment Diagram from the first implementation.
 
 ![Deployment Diagram](assets/deployment-diagram.png)
 
