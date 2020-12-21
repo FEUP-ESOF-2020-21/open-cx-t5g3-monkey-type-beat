@@ -151,7 +151,8 @@ There were no changes on the original Deployment Diagram from the first implemen
 ---
 ## Test
 
-Test Plan
+### Test Plan
+
 In order to test this app, we planned to use flutter gherkin to develop acceptance tests and unit tests.
 
 Despite trying, we failed to implement tests for the features we wanted to, because of the lack of time.
@@ -165,7 +166,7 @@ The following tests were planned to be implemented for this "Delete Account" Use
 • Given a user that chooses to delete their account, then it is possible for them to cancel that action and make the form disappear without any further action.
 
 
-Test Case Specification
+### Test Case Specification
 
 The acceptance tests mentioned were added to the respective user story card.
 
