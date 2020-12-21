@@ -90,6 +90,8 @@ Our current User Stories are in our [Trello](https://trello.com/b/Kat9JPpt) and 
 
 ### Domain model
 
+Since we based our work around the previous app's version, we think the existing domain model still applies to the most recent release. Therefore we decided to keep it identical.
+
 <div align="center">
   <img width="600" src="assets/domain-model.png">
 </div>
