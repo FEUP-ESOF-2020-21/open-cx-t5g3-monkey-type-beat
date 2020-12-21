@@ -164,8 +164,11 @@ The following tests were planned to be implemented for this "Delete Account" Use
 
 • Given a user that chooses to delete their account, then it is possible for them to cancel that action and make the form disappear without any further action.
 
+
 Test Case Specification
+
 The acceptance tests mentioned were added to the respective user story card.
+
 ---
 
 ## Project management
