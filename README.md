@@ -119,28 +119,6 @@ There were no changes on the original Deployment Diagram from the first implemen
 
 ![Deployment Diagram](assets/deployment-diagram.png)
 
-### Prototype
-
-The following user stories were completed during the implementation of the product:
-
-#### [As an user, when I open the app, I want to have displayed some information regarding my list of friends](https://trello.com/c/pfFkFLHP/14-weight-2-as-an-user-when-i-open-the-app-i-want-to-have-displayed-some-information-regarding-my-list-of-friends)
-
-#### [As an user I want to be able remove my current filters and profile tags](https://trello.com/c/P2A8m1Ml/2-weight-3-as-an-user-i-want-to-be-able-remove-my-current-filters-and-profile-tags)
-
-#### [As an user I want to be able to view my profile so that I can view and edit my information](https://trello.com/c/eUoRRmB2/15-weight-3-as-an-user-i-want-to-be-able-to-view-my-profile-so-that-i-can-view-and-edit-my-information)
-
-#### [As an user, I want to be able to see my friend's profile pages and check information regarding them](https://trello.com/c/kDfoQywj/1-weight-3-as-an-user-i-want-to-be-able-to-see-my-friends-profile-pages-and-check-information-regarding-them)
-
-#### [As an user, I want to be able to create my own profile, so that I can interact with other users in the platform](https://trello.com/c/Ddgk7Bfb/16-weight-4-as-a-user-i-want-to-be-able-to-create-my-own-profile-so-that-i-can-interact-with-other-users-in-the-platform)
-
-#### [As an user, I want to be able to logout from my account](https://trello.com/c/uBnAL5UN/18-weight-1-as-an-user-i-want-to-be-able-to-logout-from-my-account)
-
-#### [As an user, I want to be able to log in to my account](https://trello.com/c/k8enPfAv/17-weight-3-as-an-user-i-want-to-be-able-to-log-in-to-my-account)
-
-#### [As a client, I want the users to have the option of deleting their account](https://trello.com/c/5GwKsnsJ/12-weight-3-as-a-client-i-want-the-users-to-have-the-option-of-deleting-their-account)
-
----
-
 ## Implementation
 
 ### v0.1 - 06/11/2020
@@ -174,12 +152,11 @@ The following user stories were completed during the implementation of the produ
 ## Test
 
 Test Plan
-In order to test this app, flutter gherkin is used to develop acceptance tests and unit tests.
+In order to test this app, we planned to use flutter gherkin to develop acceptance tests and unit tests.
 
-These tests were implemented for the following feature:
-- Users should be able to delete their account.
+Despite trying, we failed to implement tests for the features we wanted to, because of the lack of time.
 
-The following tests were implemented for this User Story:
+The following tests were planned to be implemented for this "Delete Account" User Story:
 
 • Given a user that is already signed up, then it is possible for them to go to the settings page and choose to delete their account and a form pops up to confirm its deletion.
 
@@ -188,8 +165,7 @@ The following tests were implemented for this User Story:
 • Given a user that chooses to delete their account, then it is possible for them to cancel that action and make the form disappear without any further action.
 
 Test Case Specification
-The acceptance tests mentioned were added to the respective user story card. They were implemented using flutter gherkin. The implementation can be found in the flutter_driver folder. Furthermore, in the test folder, some unit tests can be found.
-
+The acceptance tests mentioned were added to the respective user story card.
 ---
 
 ## Project management
